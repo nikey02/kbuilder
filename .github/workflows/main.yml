@@ -50,13 +50,17 @@ jobs:
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
           
-          tar cvzf btrfs.tar.xz out/arch/arm64/boot
+      - name: pack
+        run: |
+          tar cvzf final.tar.xz out/arch/arm64/boot
           
-          ls -lah btrfs.tar.xz
-          
+          ls -lah final.tar.xz
+      
+      - name: upload     
       - uses: actions/upload-artifact@v2
         with:
-         path: btrfs.tar.xz
+         name: final
+         path: final.tar.xz
       
           
           
