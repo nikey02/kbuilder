@@ -46,17 +46,17 @@ jobs:
           export SUBARCH=arm64 
           export CROSS_COMPILE=/home/runner/work/kbuilder/kbuilder/toolchain/bin/aarch64-linux-android-
           
-          make O=out ARCH=arm64 andrax_defconfig
+          make O=out ARCH=arm64 btrfs_defconfig
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
           
-          tar cvzf andrax.tar.xz out/arch/arm64/boot
+          tar cvzf btrfs.tar.xz out/arch/arm64/boot
           
-          ls -lah andrax.tar.xz
+          ls -lah btrfs.tar.xz
           
       - uses: actions/upload-artifact@v2
         with:
-         path: andrax.tar.xz
+         path: btrfs.tar.xz
       
           
           
