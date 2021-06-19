@@ -50,7 +50,20 @@ jobs:
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
           
-          cat kernel.log
+          tar cvzf out.tar.xz out/
+          
+          ls -lah out.tar.xz
+          
+      - uses: actions/upload-artifact@v2
+        with:
+         path: out.tar.xz
+      
+      - uses: actions/download-artifact@v2
+        id: download
+        with:
+         name: 'my-artifact'
+         path: out.tar.xz 
+
           
           
 
