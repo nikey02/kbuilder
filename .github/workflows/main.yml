@@ -35,7 +35,7 @@ jobs:
           sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl g++-multilib unzip libssl-dev libncurses5-dev wget -y
       - name: toolchain
         run: |
-          git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 toolchain
+          git clone -b android-7.1.1_r60 https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 toolchain
           ls toolchain
       
       - name: build
