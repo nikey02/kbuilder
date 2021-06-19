@@ -45,14 +45,14 @@ jobs:
           export ARCH=arm64 
           export SUBARCH=arm64 
           export DTC_EXT=dtc
+          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH 
+          export CROSS_COMPILE=aarch64-linux-android-
           
           make O=out ARCH=arm64 oxygen_defconfig
           
-          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH \
           echo $PATH
           make -j$(nproc --all) O=out \ 
-          ARCH=arm64 \ 
-          CROSS_COMPILE=aarch64-linux-android- | tee kernel.log
+          ARCH=arm64 | tee kernel.log
           
           cat kernel.log
           
