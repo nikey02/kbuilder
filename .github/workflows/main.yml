@@ -28,13 +28,29 @@ jobs:
     # Repository name with owner. For example, actions/checkout
     # Default: ${{ github.repository }}
           repository: 'hnmn/bolt_kernel_xiaomi_oxygen'
-      - name:
+      - name: deps
         run: |
           pwd
           ls -la
           sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl g++-multilib unzip libssl-dev libncurses5-dev wget -y
-         
+      - name: toolchain
+        run: |
           git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 toolchain
+      
+      - name: build
+        run: | 
+          rm -rf out 
+          mkdir out 
+          export ARCH=arm64 
+          export SUBARCH=arm64 
+          export DTC_EXT=dtc
+          
+          make O=out ARCH=arm64 oxygen_defconfig
+          
+          PATH="${PWD}/bin:${PWD}/toolchain/bin:${PATH}" \ 
+          make -j$(nproc --all) O=out \ 
+          ARCH=arm64 \ 
+          CROSS_COMPILE=aarch64-linux-android- | tee kernel.log
           
           
 
