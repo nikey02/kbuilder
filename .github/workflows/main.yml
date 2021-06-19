@@ -36,6 +36,7 @@ jobs:
       - name: toolchain
         run: |
           git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 toolchain
+          ls toolchain/bin
       
       - name: build
         run: | 
@@ -47,10 +48,13 @@ jobs:
           
           make O=out ARCH=arm64 oxygen_defconfig
           
-          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH \ 
+          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH \
+          echo $PATH
           make -j$(nproc --all) O=out \ 
           ARCH=arm64 \ 
           CROSS_COMPILE=aarch64-linux-android- | tee kernel.log
+          
+          cat kernel.log
           
           
 
