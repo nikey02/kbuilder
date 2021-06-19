@@ -49,7 +49,9 @@ jobs:
           make O=out ARCH=arm64 btrfs_defconfig
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
-          
+      
+      - name:
+        run: |
           tar cvzf final.tar.xz out/arch/arm64/boot
           
           ls -lah final.tar.xz
