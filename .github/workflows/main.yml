@@ -46,11 +46,11 @@ jobs:
           export SUBARCH=arm64 
           export DTC_EXT=dtc
           echo $HOME
-          echo "$PWD/bin:$HOME/toolchain/bin" >> $GITHUB_PATH 
-          export PATH="${PWD}/bin:${PWD}/toolchain/bin:${PATH}"
+          exho $PWD
+          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH 
           export CROSS_COMPILE=aarch64-linux-android-
           
-          make O=out ARCH=arm64 oxygen_defconfig
+          PATH="${PWD}/bin:${PWD}/toolchain/bin:${PATH}" make O=out ARCH=arm64 oxygen_defconfig
           
           echo $PATH
           cd out
