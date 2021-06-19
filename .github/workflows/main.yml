@@ -50,8 +50,6 @@ jobs:
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
           
-      - name: pack
-        run: |
           tar cvzf final.tar.xz out/arch/arm64/boot
           
           ls -lah final.tar.xz
