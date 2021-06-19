@@ -45,7 +45,8 @@ jobs:
           export ARCH=arm64 
           export SUBARCH=arm64 
           export DTC_EXT=dtc
-          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH 
+          echo $HOME
+          echo "$PWD/bin:$HOME/toolchain/bin" >> $GITHUB_PATH 
           export PATH="${PWD}/bin:${PWD}/toolchain/bin:${PATH}"
           export CROSS_COMPILE=aarch64-linux-android-
           
@@ -53,8 +54,7 @@ jobs:
           
           echo $PATH
           cd out
-          make -j$(nproc --all) \ 
-          ARCH=arm64 | tee kernel.log
+          make -j$(nproc --all) ARCH=arm64 | tee kernel.log
           
           cat kernel.log
           
