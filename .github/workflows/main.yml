@@ -57,7 +57,7 @@ jobs:
           ls -lah final.tar.xz
       
       - name: upload     
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
          name: final
          path: final.tar.xz
