@@ -48,9 +48,7 @@ jobs:
           
           make O=out ARCH=arm64 oxygen_defconfig
           
-          echo $PATH
-          cd out
-          make -j$(nproc --all) ARCH=arm64 | tee kernel.log
+          make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
           
           cat kernel.log
           
