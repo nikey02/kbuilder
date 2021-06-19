@@ -47,7 +47,7 @@ jobs:
           
           make O=out ARCH=arm64 oxygen_defconfig
           
-          PATH="${PWD}/bin:${PWD}/toolchain/bin:${PATH}" \ 
+          echo "$PWD/bin:$PWD/toolchain/bin" >> $GITHUB_PATH \ 
           make -j$(nproc --all) O=out \ 
           ARCH=arm64 \ 
           CROSS_COMPILE=aarch64-linux-android- | tee kernel.log
