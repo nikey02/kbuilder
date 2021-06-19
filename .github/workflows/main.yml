@@ -32,7 +32,14 @@ jobs:
         run: |
           pwd
           ls -la
-          sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl g++-multilib unzip -y
+          sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl g++-multilib unzip libssl-dev libncurses5-dev wget -y
+         
+          git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 toolchain
+          
+          
+
+
+         
 
            
       
