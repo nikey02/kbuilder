@@ -46,21 +46,21 @@ jobs:
           export SUBARCH=arm64 
           export CROSS_COMPILE=/home/runner/work/kbuilder/kbuilder/toolchain/bin/aarch64-linux-android-
           
-          make O=out ARCH=arm64 btrfs_defconfig
+          make O=out ARCH=arm64 v4_defconfig
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
       
       - name:
         run: |
-          tar cvzf final.tar.xz out/arch/arm64/boot
+          tar cvzf v4.tar.xz out/arch/arm64/boot
           
-          ls -lah final.tar.xz
+          ls -lah v4.tar.xz
       
       - name: upload     
         uses: actions/upload-artifact@v2
         with:
-         name: final
-         path: final.tar.xz
+         name: final_v4
+         path: v4.tar.xz
       
           
           
