@@ -46,7 +46,7 @@ jobs:
           export SUBARCH=arm64 
           export CROSS_COMPILE=/home/runner/work/kbuilder/kbuilder/toolchain/bin/aarch64-linux-android-
           
-          make O=out ARCH=arm64 v4_defconfig
+          make O=out ARCH=arm64 oxygen_defconfig
           
           make -j$(nproc --all) O=out ARCH=arm64 | tee kernel.log
       
